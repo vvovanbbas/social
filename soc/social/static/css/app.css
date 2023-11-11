@@ -32,5 +32,11 @@ a:hover{
     color: #f00;
 }
 
-
+.form{
+    width: 191px;
+    margin: auto;
+}
+.form div{
+    margin: 10px;
+}
 

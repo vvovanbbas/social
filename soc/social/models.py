@@ -11,6 +11,8 @@ class User(models.Model):
     city = models.CharField(max_length=200, verbose_name='Город')
 
 
+    def __str__(self):
+        return self.login
 
 
 class Panel(models.Model):
@@ -18,5 +20,7 @@ class Panel(models.Model):
     description = models.CharField(max_length=200, verbose_name='Описание', default='')
     image = models.ImageField(upload_to='soc/social/panels', verbose_name='Картинка')
     iduser = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 
 

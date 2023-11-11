@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% block title %}Геристрация{% endblock %}
+{% block content %}
+<h1 align="center">Регистрация</h1>
+<form method="post" class="form">
+    {% csrf_token %}
+    <div>ФИО</div>
+    <div><input type="text" required placeholder="ФИО" name="fio"></div>
+
+    <div>Логин</div>
+    <div><input type="text" required placeholder="Логин" name="login"></div>
+
+    <div>Пароль</div>
+    <div><input type="password" required placeholder="Password" name="password"></div>
+
+    <div>Дата рождени</div>
+    <div><input type="date" required name="date"></div>
+
+    <div>Город</div>
+    <div>
+        <select name="city">
+            <option value="Москва">Москва</option>
+            <option value="Санкт-Петербург">Санкт-Петербург</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Реистрация">
+    </div>
+</form>
+{% endblock %}

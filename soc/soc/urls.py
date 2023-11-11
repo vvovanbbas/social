@@ -19,4 +19,6 @@ from social.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
+    path('reg/', reg),
+    path('auth/', auth),
 ]
