@@ -2,6 +2,15 @@
 {% block title %}Геристрация{% endblock %}
 {% block content %}
 <h1 align="center">Регистрация</h1>
+{% if 'login' in request.session %}
+<p align="center">Вы успешно авторизированы</p>
+{% else %}
+{% if suc == 1%}
+<p align="center">Вы успешно авторизированы</p>
+{% endif %}
+{% if suc == 2%}
+<p align="center">Такой логин уже занят</p>
+{% endif %}
 <form method="post" class="form">
     {% csrf_token %}
     <div>ФИО</div>
@@ -27,4 +36,5 @@
         <input type="submit" value="Регистрация">
     </div>
 </form>
+{% endif %}
 {% endblock %}

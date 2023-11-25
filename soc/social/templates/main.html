@@ -22,6 +22,15 @@
                     <li>
                         <a href="/auth">Авторизация</a>
                     </li>
+                    {% if 'login' in request.session %}
+                    <li>
+                        <a href="/users">Список пользователей</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Выход</a>
+                    </li>
+
+                    {% endif %}
             </ul>
         </header>
             <main>

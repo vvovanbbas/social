@@ -2,19 +2,23 @@
 {% block title %}Авторизация{% endblock %}
 {% block content %}
 <h1 align="center">Авторизация</h1>
+{% if not 'login' in request.session %}
 <form method="post" class="form">
     {% csrf_token %}
     <div>Логин</div>
     <div>
-        <input type="text" required placeholder="Логин" name="login1">
+        <input type="text" required placeholder="Логин" name="login">
     </div>
 
     <div>Пароль</div>
     <div>
-        <input type="password" required placeholder="Password" name="password1">
+        <input type="password" required placeholder="Password" name="password">
     </div>
     <div>
         <input type="submit" value="Авторизация">
     </div>
 </form>
+{% else %}
+<p>Вы успешно авторизированы</p>
+{% endif %}
 {% endblock %}

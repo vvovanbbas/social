@@ -39,4 +39,29 @@ a:hover{
 .form div{
     margin: 10px;
 }
+.form{
+    margin: 10px auto;
+}
+input{
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    border-radius: 7px;
 
+}
+p{
+    text-align: center;
+}
+.user_panel{
+    display: flex;
+}
+.user_panel div:first-child{
+    width: 30%;
+}
+
+.user_panel div:last-child{
+    width: 70%;
+
+}
+.user_panel div p{
+    text-align: left !important;
+}

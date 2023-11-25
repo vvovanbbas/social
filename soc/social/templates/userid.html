@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% block title %}Авторизация{% endblock %}
+{% block content %}
+<h1 align="center">{{user.login}}</h1>
+<div class="user_panel">
+    <div>
+        <img src="/static/img/def.png" alt="" width="200px">
+    </div>
+    <div>
+        <p>{{user.login}}</p>
+        <p><b>ФИО:</b>> {{user.fio}}</p>
+        <p><b>Дата рождения:</b>> {{user.date}}</p>
+        <p><b>Город:</b>> {{user.city}}</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block title %}Авторизация{% endblock %}
+{% block content %}
+<h1 align="center">Список пользователей на сайте</h1>
+<ul>
+    {% for user in users %}
+        <li>
+            <a href="/user/{{user.id}}">{{user.login}}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

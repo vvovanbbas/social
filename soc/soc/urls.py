@@ -21,4 +21,7 @@ urlpatterns = [
     path('', index),
     path('reg/', reg),
     path('auth/', auth),
+    path('logout/', logout),
+    path('users/', users),
+    path('user/<int:id>', userid),
 ]
