@@ -24,5 +24,12 @@ def reg(request):
     return render(request, 'reg.html')
 
 def auth(request):
+    if request.method == 'POST':
+        login = request.POST['login1']
+        password = request.POST['password1']
+
+        user = User_1()
+        user.login = login
+        user.password = password
     return render(request, 'auth.html')
 

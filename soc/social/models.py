@@ -22,5 +22,10 @@ class Panel(models.Model):
     iduser = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+class User_1(models.Model):
+    login = models.CharField(max_length=200, verbose_name='Login')
+    password = models.CharField(max_length=200, verbose_name='Password')
+
+
 
 

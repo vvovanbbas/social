@@ -2,4 +2,19 @@
 {% block title %}Авторизация{% endblock %}
 {% block content %}
 <h1 align="center">Авторизация</h1>
+<form method="post" class="form">
+    {% csrf_token %}
+    <div>Логин</div>
+    <div>
+        <input type="text" required placeholder="Логин" name="login1">
+    </div>
+
+    <div>Пароль</div>
+    <div>
+        <input type="password" required placeholder="Password" name="password1">
+    </div>
+    <div>
+        <input type="submit" value="Авторизация">
+    </div>
+</form>
 {% endblock %}
