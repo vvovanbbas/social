@@ -1,16 +1,45 @@
 {% extends 'main.html' %}
 {% block title %}Авторизация{% endblock %}
 {% block content %}
-<h1 align="center">{{user.login}}</h1>
 <div class="user_panel">
     <div>
-        <img src="/static/img/def.png" alt="" width="200px">
+        <img src="/static/img/def.png" width="200px">
+        <div>
+            {% if not user_id == id %}
+            <form method="post" action="/add_friend/">
+                {% csrf_token %}
+                <input type="hidden" name="friend" value="{{user.id}}">
+                {% if suc == 1 %}
+                    <p>Вы уже в друзьях</p>
+                {% else %}
+                    <button class="btn_add">Добавить в друзья</button>
+                {% endif %}
+
+            </form>
+             <form method="post" action="/add_chat/">
+                 {% csrf_token %}
+                <input type="hidden" name="friend" value="{{user.id}}">
+                <button class="btn_add">Написать сообщение</button>
+            </form>
+            {% endif %}
+        </div>
     </div>
     <div>
         <p>{{user.login}}</p>
-        <p><b>ФИО:</b>> {{user.fio}}</p>
-        <p><b>Дата рождения:</b>> {{user.date}}</p>
-        <p><b>Город:</b>> {{user.city}}</p>
+        <p><b>ФИО:</b> {{user.fio}}</p>
+        <p><b>Дата рождения:</b> {{user.date}}</p>
+        <p><b>Город:</b> {{user.city}}</p>
+        <p>Список друзей:
+            <ul>
+                {% for current_user_friend in current_user_friends %}
+                    <li>{{current_user_friend.friend.login}}</li>
+
+
+
+                {% endfor %}
+            </ul>
+        </p>
     </div>
 </div>
+
 {% endblock %}

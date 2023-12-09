@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block title %}Авторизация{% endblock %}
+{% block content %}
+<div class="user_panel">
+    <div>
+        <img src="/static/img/def.png" width="200px">
+    </div>
+    <div>
+        <p>{{current_user.login}}</p>
+        <p><b>ФИО:</b> {{current_user.fio}}</p>
+        <p><b>Дата рождения:</b> {{current_user.date}}</p>
+        <p><b>Город:</b> {{current_user.city}}</p>
+        <p>Список друзей:
+            <ul>
+                {% for current_user_friend in current_user_friends %}
+
+                    <li><a href="/user/{{current_user_friend.friend.id}}">{{current_user_friend.friend.login}}</a>
+                        <a href="/deleteuser/{{current_user_friend.id}}">Удалить</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    </div>
+</div>
+<div>
+    <h2>Моя стена:</h2>
+    <form action="addstena" method="post">
+        <textarea cols="100" rows="10"></textarea><br />
+        <button>Разместить</button>
+    </form>
+</div>
+{% endblock %}

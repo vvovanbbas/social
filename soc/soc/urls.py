@@ -24,4 +24,8 @@ urlpatterns = [
     path('logout/', logout),
     path('users/', users),
     path('user/<int:id>', userid),
+    path('add_friend/', add_friend),
+    path('add_chat/', add_chat),
+    path('mypage/', mypage),
+    path('deleteuser/<int:id>', deleteuserid),
 ]

@@ -26,6 +26,11 @@ class User_1(models.Model):
     login = models.CharField(max_length=200, verbose_name='Login')
     password = models.CharField(max_length=200, verbose_name='Password')
 
+class Friend(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    friend = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friend')
+    date_added = models.DateTimeField(auto_now_add=True)
+
 
 
 

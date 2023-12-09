@@ -65,3 +65,12 @@ p{
 .user_panel div p{
     text-align: left !important;
 }
+
+.btn_add{
+    background: #4169E1;
+    color: #fff;
+    padding: 4px 5px;
+    border-radius: 7px;
+    border: none;
+    margin: 4px;
+}

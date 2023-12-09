@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from social.models import *
 # Create your views here.
 
@@ -48,9 +48,49 @@ def users(request):
 def userid(request, id):
     if User.objects.filter(id=id).exists():
         user = User.objects.filter(id=id).first()
-        return render(request, 'userid.html', context={'user': user})
+        friend = get_object_or_404(User, id=id)
+        current_user = get_object_or_404(User, login=request.session['login'])
+        current_user_friends = Friend.objects.filter(user=friend)
+
+
+
+
+
+        suc = 0
+
+        if Friend.objects.filter(user=current_user, friend=friend).exists():
+            suc = 1
+        r = 0
+        userf = User.objects.filter(login=request.session['login']).first()
+        return render(request, 'userid.html', context={'user': user, 'suc': suc, 'user_id': userf.id, 'id': id, 'current_user_friends': current_user_friends})
     else:
         return redirect('/')
 
 
 
+def add_chat(request):
+    pass
+def add_friend(request):
+    friend = get_object_or_404(User, id=request.POST['friend'])
+
+    current_user = get_object_or_404(User, login=request.session['login'])
+
+    if friend==current_user:
+        return redirect('/user/'+request.POST['friend'])
+
+    if not Friend.objects.filter(user=current_user,friend=friend).exists():
+        Friend.objects.create(user=current_user, friend=friend)
+    return redirect('/user/'+request.POST['friend'])
+
+def mypage(request):
+    current_user = get_object_or_404(User, login=request.session['login'])
+    friend = get_object_or_404(User, id=current_user.id)
+    current_user_friends = Friend.objects.filter(user=friend)
+
+    return render(request, 'user/mypage.html', context={'current_user': current_user, 'current_user_friends': current_user_friends})
+
+
+def deleteuserid(request, id):
+    Friend.objects.filter(id=id).delete()
+
+    return redirect('/mypage')
