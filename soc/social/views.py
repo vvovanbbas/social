@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from social.models import *
+from .models import *
 # Create your views here.
 
 
@@ -62,14 +62,23 @@ def userid(request, id):
             suc = 1
         r = 0
         userf = User.objects.filter(login=request.session['login']).first()
-        return render(request, 'userid.html', context={'user': user, 'suc': suc, 'user_id': userf.id, 'id': id, 'current_user_friends': current_user_friends})
+
+
+        mypages = Mypage.objects.filter(user=user)
+        return render(request, 'userid.html', context={'user': user, 'suc': suc, 'user_id': userf.id, 'id': id, 'current_user_friends': current_user_friends, 'mypages': mypages})
     else:
         return redirect('/')
 
 
 
-def add_chat(request):
-    pass
+def add_chat(request, id):
+    friend = get_object_or_404(User, id=id)
+    concurrent_user = get_object_or_404(User, login=request.session['login'])
+    if request.method == 'POST':
+        message = request.POST['message']
+        Chat.objects.create(user=concurrent_user, friend=friend, message=message)
+
+    return render(request, "user/chat.html")
 def add_friend(request):
     friend = get_object_or_404(User, id=request.POST['friend'])
 
@@ -87,10 +96,23 @@ def mypage(request):
     friend = get_object_or_404(User, id=current_user.id)
     current_user_friends = Friend.objects.filter(user=friend)
 
-    return render(request, 'user/mypage.html', context={'current_user': current_user, 'current_user_friends': current_user_friends})
+    if request.method =="POST":
+        message = request.POST['message']
+        Mypage.objects.create(user=current_user, message=message)
+        return redirect('/mypage/')
+
+
+    mypages = Mypage.objects.filter(user=current_user)
+    return render(request, 'user/mypage.html',  {'current_user': current_user, 'current_user_friends': current_user_friends, 'mypages': mypages})
 
 
 def deleteuserid(request, id):
     Friend.objects.filter(id=id).delete()
 
     return redirect('/mypage')
+
+def deletemypage(request):
+    if request.method == 'POST':
+        id = request.POST['id']
+        Mypage.objects.filter(id=id).delete()
+    return redirect('/mypage/')

@@ -21,10 +21,27 @@
         </p>
     </div>
 </div>
+<div class="list_message">
+    {% for mypage in mypages %}
+        <div>
+            <p>{{mypage.message}}</p>
+            <p class="datetime">Дата добавления: {{mypage.date_added}}</p>
+
+            <form action="{% url 'deletemypage' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{mypage.id}}">
+                <button>Удалить</button>
+
+            </form>
+
+        </div>
+    {% endfor %}
+</div>
 <div>
     <h2>Моя стена:</h2>
-    <form action="addstena" method="post">
-        <textarea cols="100" rows="10"></textarea><br />
+    <form method="post">
+        {% csrf_token %}
+        <textarea cols="100" rows="10" name="message"></textarea><br />
         <button>Разместить</button>
     </form>
 </div>

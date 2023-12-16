@@ -16,9 +16,8 @@
                 {% endif %}
 
             </form>
-             <form method="post" action="/add_chat/">
+             <form method="post" action="/add_chat/{{user.id}}">
                  {% csrf_token %}
-                <input type="hidden" name="friend" value="{{user.id}}">
                 <button class="btn_add">Написать сообщение</button>
             </form>
             {% endif %}
@@ -41,5 +40,16 @@
         </p>
     </div>
 </div>
+    <h2 align = 'center'>Стена</h2>
+    <div class="list_message">
+    {% for mypage in mypages %}
+        <div>
+            <p>{{mypage.message}}</p>
+            <p class="datetime">Дата добавления: {{mypage.date_added}}</p>
+
+
+        </div>
+    {% endfor %}
+    </div>
 
 {% endblock %}

@@ -25,7 +25,8 @@ urlpatterns = [
     path('users/', users),
     path('user/<int:id>', userid),
     path('add_friend/', add_friend),
-    path('add_chat/', add_chat),
+    path('add_chat/<int:id>', add_chat),
     path('mypage/', mypage),
     path('deleteuser/<int:id>', deleteuserid),
+    path('deletemypage/', deletemypage, name='deletemypage'),
 ]

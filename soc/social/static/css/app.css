@@ -74,3 +74,28 @@ p{
     border: none;
     margin: 4px;
 }
+.list_message{
+    margin-left: 241px;
+}
+
+
+.list_message p{
+    text-align: right;
+    margin: 10px;
+}
+.list_message div{
+    margin-botton: 20px;
+    border-bottom: 1px solid #eee;
+
+}
+.datetime{
+    font-size: 10px;
+    font-weight: bold;
+}
+.list_message form{
+    text-align: right;
+    margin: 10px;
+}
+
+
+
